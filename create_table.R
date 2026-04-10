@@ -21,3 +21,4 @@ DBI::dbExecute(con, "
     ('Monika'),
     ('Zuzia');
 ")
+
