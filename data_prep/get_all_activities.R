@@ -8,24 +8,21 @@ client_id <- Sys.getenv("CLIENT_ID")
 client_secret <- Sys.getenv("CLIENT_SECRET")
 refresh_token <- readLines(".strava_refresh_token")
 
-athlete_url <- "https://www.strava.com/api/v3/athlete"
+
 activities_url <- "https://www.strava.com/api/v3/athlete/activities"
 details_url <- "https://www.strava.com/api/v3/activities/"
 
 # --------------- Get an access and a refresh token ---------------
 access_token <- get_access() 
 
-# --------------- Get the athlete info  ---------------
-athlete_res <- GET(url=athlete_url, 
-                 config=add_headers("Authorization"=paste("Basic Authorization: Bearer", access_token, sep= ' ')))
 
-athlete <- fromJSON(rawToChar(athlete_res$content))
-print(names(athlete))
+# --------------- Get all activities  ---------------
 
-print(c(athlete$firstname, athlete$lastname, athlete$updated_at))
-
-
-
+activities_res<-GET(url=activities_url, 
+                    config=add_headers("Authorization"=paste("Basic Authorization: Bearer", access_token, sep= ' ')),
+                    query=list(
+                        per_page=200
+                 ))
 
 # ids<-activities$id #Get a vector of all activity IDs
 

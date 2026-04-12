@@ -29,4 +29,4 @@ activities_res<-GET(url=activities_url,
                  ))
 
 
-activities<-fromJSON(rawToChar(activities_res$content), simplifyVector = FALSE)
+activities<-fromJSON(rawToChar(activities_res$content))
