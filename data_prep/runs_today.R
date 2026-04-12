@@ -4,7 +4,7 @@ library(dplyr)
 library(hms)
 source("load_functions.R")
 
-details_url <- "https://www.strava.com/api/v3/activities/"
+activities_url <- "https://www.strava.com/api/v3/athlete/activities"
 
 # --------------- Get an access and a refresh token ---------------
 access_token <- get_access()
@@ -27,3 +27,7 @@ activities_res<-GET(url=activities_url,
 
 
 activities<-fromJSON(rawToChar(activities_res$content))
+
+# FILTER TO JUST RUNS
+
+# IF THERE'S A NEW RUN, APPEND IT TO THE MASTER TABLE
