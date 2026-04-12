@@ -22,7 +22,7 @@ get_access <- function() {
                   encode="form")
 
   auth <- fromJSON(rawToChar(auth_res$content))
-  print(auth)
+
   access_token  <- auth$access_token # Access token used for API calls futher down
   refresh_token <- auth$refresh_token # Refresh token stored for the next call to the auth api
 
