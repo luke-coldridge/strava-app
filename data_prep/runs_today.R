@@ -15,7 +15,7 @@ access_token <- get_access()
 
 # --------------- Get the activities in the last 24 hours ---------------
 today <- Sys.Date()
-yesterday <- today
+yesterday <- today - 1
 
 after <- as.numeric(as.POSIXct(paste(yesterday, "22:00:01"))) # We only want the data after 10PM yesterday
 before <- as.numeric(as.POSIXct(paste(today, "22:00:00"))) # ...and before 10pm today
