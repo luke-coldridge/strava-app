@@ -25,6 +25,7 @@ access_token <- get_access()
 # Loop through max 200 activities at a time and append 
 i <- 1
 repeat {
+
   activities <- request(activities_url) %>% # hand httr2 the url
     req_auth_bearer_token(access_token) %>% # authorize with the access_token
         req_url_query(page=i,
@@ -41,6 +42,7 @@ repeat {
   
     runs <- c(runs, some_runs)
     i <- i+1
+  
 }
 rm(some_runs)
 
@@ -68,7 +70,7 @@ runs_meta <- lapply(runs, function(run) # For each run in runs list, select the 
 
   dbWriteTable(
     con, # use the connection details created by the 'Connections' tab
-    name = DBI::Id(schema = "strava", table = "runs_meta"), # Specifically put the table inside the strava schema
+    name = DBI::Id(schema = "strava", table = "runs_meta"), # Put the table inside the strava schema
     value = runs_meta, # write the runs_meta df
     overwrite = TRUE 
 )
